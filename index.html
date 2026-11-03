@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#14343a" />
+  <meta name="description" content="8 Central Culture Hub — a place to connect, celebrate, and share what is happening with our team." />
+  <title>8 Central | The Culture Hub</title>
+  <style>
+    :root {
+      --ink: #18343b;
+      --muted: #5e7174;
+      --deep: #14343a;
+      --teal: #267d77;
+      --lime: #dbeac7;
+      --coral: #f39d82;
+      --orange: #edac6b;
+      --cream: #faf9f4;
+      --white: #ffffff;
+      --line: #e5e8e1;
+      --shadow: 0 18px 55px rgba(25, 55, 55, .08);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+    body { margin: 0; color: var(--ink); background: var(--cream); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif; line-height: 1.55; }
+    a { color: inherit; }
+    button { font: inherit; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+    .skip-link { position: absolute; left: 10px; top: -60px; background: #fff; color: #123; padding: 12px 18px; z-index: 99; }
+    .skip-link:focus { top: 10px; }
+    .container { max-width: 1180px; padding: 0 25px; margin: auto; }
+    .demo-note { text-align: center; background: #e8f2ea; color: #275b51; font-weight: 650; font-size: 12px; letter-spacing: .025em; padding: 9px 14px; }
+    header { position: sticky; top: 0; z-index: 30; background: rgba(250,249,244,.96); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(24,52,59,.08); }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 84px; gap: 28px; }
+    .brand { text-decoration: none; display: inline-flex; align-items: center; gap: 12px; font-weight: 820; letter-spacing: -.035em; font-size: 17px; white-space: nowrap; }
+    .brand-icon { display: grid; place-items: center; background: var(--deep); color: white; font-size: 21px; width: 46px; height: 46px; border-radius: 15px; transform: rotate(-5deg); box-shadow: 5px 5px 0 var(--lime); }
+    .brand-title { display: flex; flex-direction: column; line-height: 1.13; }
+    .brand-title small { font-size: 11px; letter-spacing: .14em; color: var(--teal); text-transform: uppercase; margin-top: 6px; font-weight: 750; }
+    .nav-links { display: flex; align-items: center; gap: 25px; }
+    .nav-links a { text-decoration: none; color: #37545a; font-size: 13px; font-weight: 700; transition: color .2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-links .nav-cta { background: var(--deep); color: #fff; border-radius: 999px; padding: 12px 19px; }
+    .nav-links .nav-cta:hover { color: #fff; background: var(--teal); }
+    .menu-button { display: none; background: white; color: var(--deep); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; cursor: pointer; font-weight: 700; }
+    main { overflow: hidden; }
+    .hero { position: relative; padding: 75px 0 86px; }
+    .hero::before { content: ""; position: absolute; width: 560px; height: 560px; border-radius: 50%; top: -285px; right: -200px; background: #f2f2e5; z-index: -1; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0,1.07fr) minmax(0,.93fr); align-items: center; gap: 52px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; text-transform: uppercase; letter-spacing: .16em; font-weight: 850; color: var(--teal); }
+    .eyebrow .dot { display: block; width: 9px; height: 9px; background: var(--coral); border-radius: 50%; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(49px, 5.5vw, 83px); letter-spacing: -.072em; line-height: 1.055; margin: 23px 0; font-weight: 830; }
+    h1 em { font-style: normal; color: var(--teal); }
+    .hero-copy { color: var(--muted); font-size: 17px; max-width: 505px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; text-decoration: none; cursor: pointer; border: 0; border-radius: 999px; padding: 15px 21px; font-size: 13px; font-weight: 800; transition: transform .2s, background .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--deep); color: white; box-shadow: 0 9px 25px rgba(20,52,58,.16); }
+    .btn-primary:hover { background: #276a6a; }
+    .btn-outline { background: white; border: 1px solid #dfe3dc; color: var(--ink); }
+    .hero-note { display: flex; align-items: center; gap: 12px; color: #657c7e; font-size: 12px; margin-top: 35px; font-weight: 650; }
+    .mini-avatars { display: flex; padding-left: 2px; }
+    .mini-avatars span { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; border: 2px solid var(--cream); margin-left: -3px; font-size: 12px; background: #e6d7c6; }
+    .mini-avatars span:nth-child(2) { background: #b5ddd3; }.mini-avatars span:nth-child(3) { background: #f7c6b2; }
+    .hero-art { position: relative; min-height: 440px; display: flex; align-items: center; justify-content: center; }
+    .hero-art::before { content:""; position:absolute; height: 385px; width: 385px; background: #e0e9db; border-radius: 44% 56% 56% 44% / 50% 40% 60% 50%; transform: rotate(-17deg); z-index: 0; }
+    .hero-art::after { content:"✳"; position:absolute; top: 11px; left: 21px; color: #ecae78; font-size: 68px; z-index: 1; }
+    .feature-card { position: relative; z-index: 2; width: min(100%, 380px); padding: 31px; border-radius: 28px; background: #fff; transform: rotate(3deg); box-shadow: 0 30px 65px rgba(14,53,56,.14); }
+    .feature-top { display: flex; align-items: center; justify-content: space-between; color: #54706d; text-transform: uppercase; font-size: 11px; letter-spacing: .14em; font-weight: 850; }
+    .feature-top span:last-child { color: #b27154; background: #fff0e8; padding: 7px 10px; border-radius: 100px; letter-spacing: 0; text-transform: none; }
+    .feature-illustration { margin: 21px 0 17px; min-height: 165px; display: grid; place-items: center; border-radius: 17px; background: radial-gradient(circle at 78% 25%,#f8cba5 0 13%,transparent 13.4%),linear-gradient(130deg,#d4e9df,#edf0d4); position: relative; overflow: hidden; }
+    .feature-illustration::after { content: ""; position: absolute; width: 120px; height: 120px; bottom: -65px; right: -22px; border-radius: 50%; background: #f9af8c; }
+    .feature-illustration span { font-size: 79px; transform: rotate(-11deg); filter: drop-shadow(0 8px 4px rgba(32,61,57,.1)); z-index: 1; }
+    .feature-card h3 { font-size: 27px; line-height: 1.22; letter-spacing: -.05em; margin: 0 0 8px; }
+    .feature-card p { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+    .feature-footer { border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; padding-top: 18px; font-size: 12px; font-weight: 800; }
+    .feature-footer a { text-decoration: none; color: var(--teal); }
+    .spark { position: absolute; z-index: 4; border-radius: 16px; box-shadow: var(--shadow); }
+    .spark-one { bottom: 37px; left: 0; background: #f5be9d; padding: 14px 18px; transform: rotate(-10deg); font-size: 13px; font-weight: 800; }
+    .spark-two { top: 33px; right: -8px; background: #fff; padding: 12px 16px; transform: rotate(9deg); font-size: 23px; }
+    .ribbon { background: var(--deep); color: #deece5; padding: 19px 0; overflow: hidden; }
+    .ribbon .container { display: flex; align-items: center; justify-content: space-between; gap: 18px; text-transform: uppercase; letter-spacing: .11em; font-size: 11px; font-weight: 800; }
+    .ribbon b { color: #f5af8c; font-size: 17px; }
+    .section { padding: 88px 0; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 25px; margin-bottom: 30px; }
+    h2 { margin: 12px 0 11px; letter-spacing: -.055em; font-size: clamp(34px, 4vw, 51px); line-height: 1.15; }
+    .section-sub { color: var(--muted); max-width: 590px; margin-bottom: 0; font-size: 15px; }
+    .demo-pill { white-space: nowrap; align-self: end; font-size: 11px; color: #8a6652; background: #fff0e4; border: 1px solid #f0ddc8; padding: 8px 12px; border-radius: 30px; font-weight: 750; }
+    .highlights { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 17px; }
+    .highlight { min-height: 212px; border-radius: var(--radius); padding: 28px; background: white; border: 1px solid var(--line); display: flex; flex-direction: column; box-shadow: 0 12px 25px rgba(19,49,48,.035); }
+    .highlight:first-child { background: #e3ebdf; border-color: transparent; }
+    .card-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; background: #f4f4e7; font-size: 22px; margin-bottom: auto; }
+    .highlight:first-child .card-icon { background: white; }
+    .highlight .label { color: var(--teal); text-transform: uppercase; letter-spacing: .13em; font-size: 10px; font-weight: 900; margin: 23px 0 7px; }
+    .highlight h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.035em; margin: 0 0 8px; }
+    .highlight p { color: #60716d; font-size: 13px; margin: 0; }
+    .events-wrap { background: #f0f3ec; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0; }
+    .filter { cursor: pointer; padding: 10px 16px; border: 1px solid #d6ddd3; background: transparent; color: #5b726c; border-radius: 999px; font-weight: 800; font-size: 12px; }
+    .filter[aria-pressed="true"] { background: var(--deep); color: white; border-color: var(--deep); }
+    .event-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+    .event { background: white; overflow: hidden; border-radius: var(--radius); border: 1px solid #e2e8df; box-shadow: 0 12px 32px rgba(20,52,58,.04); }
+    .event.hidden { display: none; }
+    .event-art { height: 155px; display: grid; place-items: center; position: relative; background: #f9d8be; }
+    .event:nth-child(2) .event-art { background: #d9e7e0; }
+    .event:nth-child(3) .event-art { background: #f5e9c5; }
+    .event-art > span { font-size: 71px; filter: drop-shadow(0 8px 5px rgba(61,64,38,.1)); }
+    .date-tag { position: absolute; top: 15px; left: 16px; background: white; border-radius: 11px; min-width: 53px; padding: 8px; color: var(--ink); text-align: center; font-weight: 900; font-size: 13px; }
+    .event-body { padding: 24px; }
+    .event-type { color: var(--teal); letter-spacing: .14em; text-transform: uppercase; font-weight: 900; font-size: 10px; margin-bottom: 9px; }
+    .event h3 { font-size: 21px; margin: 0 0 8px; letter-spacing: -.04em; }
+    .event p { font-size: 13px; color: var(--muted); min-height: 49px; margin: 0 0 18px; }
+    .event-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 17px; gap: 10px; }
+    .event-bottom small { color: #777; font-weight: 650; font-size: 11px; }
+    .event-bottom button { background: none; border: 0; padding: 0; color: var(--teal); font-weight: 850; font-size: 12px; cursor: pointer; }
+    .section-center { text-align: center; max-width: 680px; margin: 0 auto 35px; }
+    .section-center .eyebrow { justify-content: center; }
+    .people-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 21px; }
+    .kindness-card { border-radius: 26px; min-height: 264px; background: var(--deep); color: #fff; padding: 35px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .kindness-card::after { content: "✳"; position: absolute; right: -20px; top: -60px; font-size: 220px; line-height: 1; color: rgba(255,255,255,.07); }
+    .kindness-card .eyebrow { color: #cde4d4; }
+    .kindness-card h3 { font-size: clamp(26px, 3vw, 36px); letter-spacing: -.055em; line-height: 1.2; max-width: 360px; margin: 27px 0 13px; }
+    .kindness-card p { font-size: 14px; color: #c8dcd7; max-width: 360px; margin-bottom: 0; }
+    .recognition-card { background: #f2e8dd; border-radius: 26px; padding: 34px; position: relative; }
+    .recognition-card::after { content: "✦"; position: absolute; right: 25px; top: 7px; color: var(--coral); font-size: 59px; }
+    .recognition-card h3 { font-size: 26px; letter-spacing: -.045em; margin: 12px 0 18px; }
+    .shoutout { background: white; border-radius: 16px; padding: 16px 18px; font-weight: 700; font-size: 13px; margin-top: 9px; display: flex; gap: 12px; align-items: flex-start; }
+    .shoutout span:first-child { font-size: 20px; }
+    .feedback-section { padding: 80px 0 95px; background: #fff; }
+    .feedback-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 17px; margin-top: 31px; }
+    .feedback { border: 1px solid var(--line); border-radius: 19px; padding: 25px; background: #fafbf8; }
+    .step { display: flex; align-items: center; gap: 10px; font-size: 12px; text-transform: uppercase; letter-spacing: .11em; font-weight: 900; }
+    .step b { width: 13px; height: 13px; border-radius: 50%; background: #e9a4a0; }
+    .feedback:nth-child(2) .step b { background: #eac785; }.feedback:nth-child(3) .step b { background: #88baa4; }
+    .feedback h3 { margin: 22px 0 10px; font-size: 20px; letter-spacing: -.04em; }
+    .feedback p { margin: 0; color: var(--muted); font-size: 13px; }
+    .photo-cta { margin: 35px 0 0; padding: 29px 34px; background: #e7f0e5; border-radius: 21px; display: flex; gap: 24px; justify-content: space-between; align-items: center; }
+    .photo-cta h3 { margin: 0 0 5px; font-size: 21px; letter-spacing: -.04em; }
+    .photo-cta p { margin: 0; font-size: 13px; color: #4f6c68; }
+    .photo-cta a { white-space: nowrap; }
+    footer { background: var(--deep); color: #d6e7e2; padding: 42px 0 25px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; }
+    .footer-brand { color: white; font-weight: 850; letter-spacing: -.04em; font-size: 21px; }
+    .footer-inner p { color: #b1cbc4; font-size: 12px; margin: 9px 0; max-width: 570px; }
+    .footer-links { display: flex; gap: 19px; align-items: center; flex-wrap: wrap; }
+    .footer-links a { text-decoration: none; font-size: 12px; font-weight: 800; }
+    .footer-links a:hover { text-decoration: underline; }
+    .foot-bottom { border-top: 1px solid rgba(255,255,255,.14); margin-top: 35px; padding-top: 19px; color: #a7c1b9; font-size: 11px; }
+    dialog { width: calc(100% - 36px); max-width: 480px; padding: 0; border: none; border-radius: 25px; box-shadow: 0 25px 100px rgba(6,28,34,.3); color: var(--ink); }
+    dialog::backdrop { background: rgba(8,32,36,.55); }
+    .modal-content { padding: 32px; }
+    .modal-content .eyebrow { margin-bottom: 12px; }
+    .modal-content h3 { font-size: 30px; line-height: 1.2; letter-spacing: -.05em; margin-bottom: 14px; }
+    .modal-content p { color: var(--muted); font-size: 15px; }
+    .modal-content .btn { margin-top: 12px; }
+    .modal-close { float: right; border: 0; background: #edf2ed; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-size: 21px; }
+    @media(max-width: 950px) {
+      .hero-grid { gap: 10px; }
+      .hero-art { transform: scale(.86); }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 12px; }
+      .highlights { grid-template-columns: 1fr 1fr; }
+      .highlights .highlight:first-child { grid-column: 1/-1; min-height: 180px; }
+    }
+    @media(max-width: 740px) {
+      .container { padding: 0 19px; }
+      .nav { min-height: 73px; }
+      .menu-button { display: block; }
+      .nav-links { display: none; position: absolute; top: 73px; left: 0; right: 0; background: #fff; padding: 17px 23px 25px; flex-direction: column; align-items: stretch; border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 15px; padding: 8px 0; }
+      .nav-links .nav-cta { text-align: center; margin-top: 6px; }
+      .hero { padding: 54px 0 46px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 15px; }
+      .hero-copy { font-size: 15px; }
+      .hero-art { transform: none; min-height: 420px; }
+      .feature-card { width: 85%; }
+      .spark-one { left: 1px; }.spark-two { right: 1px; }
+      .ribbon .container { font-size: 9px; flex-wrap: wrap; justify-content: center; gap: 8px 13px; }
+      .ribbon .hide-small { display:none; }
+      .section { padding: 65px 0; }
+      .section-header { align-items: flex-start; flex-direction: column; }
+      .highlights, .event-grid, .people-grid, .feedback-grid { grid-template-columns: 1fr; }
+      .highlights .highlight:first-child { grid-column: auto; }
+      .highlight { min-height: 180px; }
+      .event-art { height: 160px; }
+      .kindness-card { min-height: 260px; }
+      .photo-cta { align-items: flex-start; flex-direction: column; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media(max-width: 420px) {
+      h1 { font-size: 50px; }
+      .hero-art { min-height: 375px; }
+      .feature-card { padding: 24px; }
+      .spark-one { font-size: 11px; }
+      .feature-illustration { min-height: 130px; }
+    }
+    @media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="demo-note">✨ STARTER WEBSITE PREVIEW — Activities below are examples only, not confirmed events.</div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="8 Central Culture Hub home">
+        <span class="brand-icon">8C</span>
+        <span class="brand-title">8 Central <small>The Culture Hub</small></span>
+      </a>
+      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navLinks">☰ Menu</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#highlights">What's New</a>
+        <a href="#events">Events</a>
+        <a href="#celebrate">Celebrations</a>
+        <a href="#feedback">Our Voice</a>
+        <a href="#events" class="nav-cta">See what's coming ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="home-title">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> More than a team. A community.</div>
+          <h1 id="home-title">The best part of 8C? <em>The people.</em></h1>
+          <p class="hero-copy">Welcome to our little corner of the internet! A place to stay connected, celebrate each other, and make more memories together — on and off the clock.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#events">Explore upcoming events <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#celebrate">Celebrate our team <span aria-hidden="true">♡</span></a>
+          </div>
+          <div class="hero-note"><div class="mini-avatars" aria-hidden="true"><span>♡</span><span>✦</span><span>☺</span></div> Built for the people who make 8C, 8C.</div>
+        </div>
+        <div class="hero-art" aria-label="Decorative team connection card">
+          <div class="feature-card">
+            <div class="feature-top"><span>A LITTLE SOMETHING TO LOOK FORWARD TO</span><span>Coming soon</span></div>
+            <div class="feature-illustration" aria-hidden="true"><span>🎉</span></div>
+            <h3>Good people.<br />Great moments.</h3>
+            <p>New team happenings will show up here. Stay tuned!</p>
+            <div class="feature-footer"><span>📅 Date to be announced</span><a href="#events">View events →</a></div>
+          </div>
+          <div class="spark spark-one">💌 You belong here</div>
+          <div class="spark spark-two" aria-hidden="true">🌼</div>
+        </div>
+      </div>
+    </section>
+    <div class="ribbon" aria-label="Our culture values">
+      <div class="container"><span>Make memories</span><b aria-hidden="true">✳</b><span>Celebrate each other</span><b aria-hidden="true">✳</b><span>Stay connected</span><b class="hide-small" aria-hidden="true">✳</b><span class="hide-small">Keep the good going</span></div>
+    </div>
+    <section class="section" id="highlights" aria-labelledby="highlights-title">
+      <div class="container">
+        <div class="section-header">
+          <div><div class="eyebrow"><span class="dot"></span> The bulletin board</div><h2 id="highlights-title">What's happening around 8C?</h2><p class="section-sub">The fun stuff, the feel-good stuff, and the little reminders that we're in this together.</p></div>
+          <span class="demo-pill">Sample announcements</span>
+        </div>
+        <div class="highlights">
+          <article class="highlight"><div class="card-icon" aria-hidden="true">📣</div><div class="label">The latest</div><h3>Welcome to the Culture Hub!</h3><p>One home for upcoming gatherings, team celebrations, and the moments worth sharing.</p></article>
+          <article class="highlight"><div class="card-icon" aria-hidden="true">💛</div><div class="label">Celebrate</div><h3>Every little win counts.</h3><p>Recognition and team shout-outs will have a home right here.</p></article>
+          <article class="highlight"><div class="card-icon" aria-hidden="true">📸</div><div class="label">Coming soon</div><h3>Our memory wall</h3><p>A space for approved photos from our team get-togethers.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section events-wrap" id="events" aria-labelledby="events-title">
+      <div class="container">
+        <div class="section-header"><div><div class="eyebrow"><span class="dot"></span> Save some room on your calendar</div><h2 id="events-title">Let's make plans.</h2><p class="section-sub">Browse the kinds of events we can share here. Dates and details will be added once they're confirmed.</p></div><span class="demo-pill">Demo events · Dates TBA</span></div>
+        <div class="filter-row" aria-label="Filter events">
+          <button class="filter" data-filter="all" aria-pressed="true">All events</button>
+          <button class="filter" data-filter="outing" aria-pressed="false">Team outings</button>
+          <button class="filter" data-filter="celebration" aria-pressed="false">Celebrations</button>
+          <button class="filter" data-filter="fun" aria-pressed="false">Just for fun</button>
+        </div>
+        <div class="event-grid">
+          <article class="event" data-category="outing"><div class="event-art"><span class="date-tag">TBA</span><span aria-hidden="true">☕</span></div><div class="event-body"><div class="event-type">Team outing · Example</div><h3>Coffee & Connection</h3><p>Meet up, catch up, and enjoy a little time together away from the busy shift.</p><div class="event-bottom"><small>📍 Location TBA</small><button class="event-detail" data-event="coffee">Event details →</button></div></div></article>
+          <article class="event" data-category="celebration"><div class="event-art"><span class="date-tag">TBA</span><span aria-hidden="true">🎂</span></div><div class="event-body"><div class="event-type">Celebration · Example</div><h3>Team Appreciation Day</h3><p>A little something to celebrate the amazing people who show up for one another.</p><div class="event-bottom"><small>📍 Details TBA</small><button class="event-detail" data-event="appreciation">Event details →</button></div></div></article>
+          <article class="event" data-category="fun"><div class="event-art"><span class="date-tag">TBA</span><span aria-hidden="true">🎨</span></div><div class="event-body"><div class="event-type">Just for fun · Example</div><h3>Friendly Team Challenge</h3><p>Something silly, creative, and guaranteed to bring some smiles to the unit.</p><div class="event-bottom"><small>📍 Details TBA</small><button class="event-detail" data-event="challenge">Event details →</button></div></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="celebrate" aria-labelledby="celebrate-title">
+      <div class="container">
+        <div class="section-center"><div class="eyebrow"><span class="dot"></span> Big hearts. Little moments.</div><h2 id="celebrate-title">Here's to our people.</h2><p class="section-sub">Because recognition shouldn't be saved for the big milestones. Sometimes, the smallest things mean the most.</p></div>
+        <div class="people-grid">
+          <article class="kindness-card"><div class="eyebrow">✦ Culture is what we create together</div><h3>Thank you for being someone's bright spot.</h3><p>For lending a hand, showing kindness, making someone laugh, and making each shift feel more like a team.</p></article>
+          <article class="recognition-card"><div class="eyebrow"><span class="dot"></span> The shout-out corner</div><h3>Good things deserve a spotlight.</h3><div class="shoutout"><span aria-hidden="true">🌟</span><span>For the people who always jump in to help.</span></div><div class="shoutout"><span aria-hidden="true">🌷</span><span>For making new teammates feel at home.</span></div><div class="shoutout"><span aria-hidden="true">💚</span><span>For bringing positive energy to the little moments.</span></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="feedback-section" id="feedback" aria-labelledby="feedback-title">
+      <div class="container">
+        <div class="section-header"><div><div class="eyebrow"><span class="dot"></span> Every voice matters</div><h2 id="feedback-title">You said it. We listened.<br />We made it happen.</h2><p class="section-sub">A future home for publicly shareable staff ideas and updates — without personal, patient, or internal information.</p></div><span class="demo-pill">Illustrative examples</span></div>
+        <div class="feedback-grid">
+          <article class="feedback"><div class="step"><b></b> You said it</div><h3>Share an idea</h3><p>Example: More ways to get together and connect outside of work.</p></article>
+          <article class="feedback"><div class="step"><b></b> We're working on it</div><h3>Make a plan</h3><p>Example: Gather ideas for a casual, optional team get-together.</p></article>
+          <article class="feedback"><div class="step"><b></b> We made it happen</div><h3>Celebrate the result</h3><p>Example: Post approved details and photos after an event takes place.</p></article>
+        </div>
+        <div class="photo-cta"><div><h3>📸 The best memories start with us.</h3><p>Photo albums and event highlights can be added here later, with permission from everyone pictured.</p></div><a class="btn btn-primary" href="#home">Back to top ↑</a></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-inner"><div><div class="footer-brand">8 Central <span style="color:#f1b397">✳</span> The Culture Hub</div><p>Connecting our team. Celebrating our people. Building our culture.</p><p>Independently maintained community site. Not an official Northside Hospital website. Do not share patient information, staff personal information, or confidential workplace details.</p></div><div class="footer-links"><a href="#home">Home</a><a href="#events">Events</a><a href="#celebrate">Celebrations</a></div></div>
+      <div class="foot-bottom">© <span id="year"></span> 8 Central Culture Hub · Made for connection, not clinical or operational communication.</div>
+    </div>
+  </footer>
+  <dialog id="eventModal" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Close event details">×</button>
+      <div class="eyebrow"><span class="dot"></span> Example event · Not scheduled</div>
+      <h3 id="modalTitle">Event</h3>
+      <p id="modalText"></p>
+      <p><strong>Date:</strong> To be announced<br /><strong>Location:</strong> To be announced</p>
+      <button class="btn btn-primary" id="modalDone">Sounds good! ✓</button>
+    </div>
+  </dialog>
+  <script>
+    // Starter site: no forms, analytics, user data collection, or external libraries.
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuButton = document.getElementById('menuButton');
+    const navLinks = document.getElementById('navLinks');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+    document.querySelectorAll('.filter').forEach(button => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.filter;
+        document.querySelectorAll('.filter').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+        document.querySelectorAll('.event').forEach(card => {
+          card.classList.toggle('hidden', selected !== 'all' && card.dataset.category !== selected);
+        });
+      });
+    });
+    const events = {
+      coffee: ['Coffee & Connection', 'A sample idea for a casual team outing. When an outing is confirmed, we can replace this description with the real date, meeting spot, and details.'],
+      appreciation: ['Team Appreciation Day', 'A sample team celebration card. We can add real information about refreshments, activities, or ways to participate once plans are approved.'],
+      challenge: ['Friendly Team Challenge', 'A sample friendly contest. This could become a pumpkin-decorating competition, seasonal game, or anything else your team enjoys!']
+    };
+    const dialog = document.getElementById('eventModal');
+    const closeModal = () => dialog.close();
+    document.querySelectorAll('.event-detail').forEach(button => button.addEventListener('click', () => {
+      const event = events[button.dataset.event];
+      document.getElementById('modalTitle').textContent = event[0];
+      document.getElementById('modalText').textContent = event[1];
+      dialog.showModal();
+    }));
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('modalDone').addEventListener('click', closeModal);
+    dialog.addEventListener('click', e => { if (e.target === dialog) closeModal(); });
+  </script>
+</body>
+</html>
